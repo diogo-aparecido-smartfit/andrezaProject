@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  cursor: pointer;
+}
+
+.slide-up {
+  transform: translateY(100%);
+  transition: all 1s ease-in-out;
+}
+
+.active {
+  transform: translateY(0);
+}
+
+.inactive {
+  transform: translateY(100%);
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+}
