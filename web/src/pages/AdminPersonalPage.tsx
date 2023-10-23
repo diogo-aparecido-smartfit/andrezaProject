@@ -6,9 +6,8 @@ import { ImSpinner2 } from "react-icons/im";
 import { MdOutlineLocalLibrary } from "react-icons/md";
 import Button from "../components/Button";
 import { useEffect, useState } from "react";
-import NotLoggedPage from "./NotLoggedPage";
 import api from "../services/api";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 interface Data {
   name: string;
@@ -107,86 +106,86 @@ export default function AdminPersonalPage() {
   };
 
   // function to send data to api
-  const handleUpdate = async (field: string, value: string) => {
-    try {
-      const updatedData = {
-        ...formData,
-        [field]: value,
-      };
-      await api.put("media", updatedData);
-      const notify = () => toast.success(`Campo's atualizado com sucesso!`);
-      notify();
-      console.log(`${field} atualizado com sucesso`);
-    } catch (error) {
-      const notify = () =>
-        toast.error(`erro ao atualizar ${field}! Erro: ${error}`);
-      notify();
-      console.error(`Erro ao atualizar ${field}:`, error);
-    }
-  };
+  // const handleUpdate = async (field: string, value: string) => {
+  //   try {
+  //     const updatedData = {
+  //       ...formData,
+  //       [field]: value,
+  //     };
+  //     await api.put("media", updatedData);
+  //     const notify = () => toast.success(`Campo's atualizado com sucesso!`);
+  //     notify();
+  //     console.log(`${field} atualizado com sucesso`);
+  //   } catch (error) {
+  //     const notify = () =>
+  //       toast.error(`erro ao atualizar ${field}! Erro: ${error}`);
+  //     notify();
+  //     console.error(`Erro ao atualizar ${field}:`, error);
+  //   }
+  // };
 
   return (
     <html className="min-h-screen bg-[#F6F6F6]">
-      <NotLoggedPage>
-        <div className="flex flex-col items-center p-4 md:px-52 lg:px-72 xl:px-96 2xl:px-[550px]">
-          <NavBar route="/adm" title="Informações" />
+      {/* <NotLoggedPage> */}
+      <div className="flex flex-col items-center p-4 md:px-52 lg:px-72 xl:px-96 2xl:px-[550px]">
+        <NavBar route="/adm" title="Informações" />
 
-          <div className="flex flex-col texxt-zinc-700 w-full rounded-xl overflow-hidden">
-            {loading ? (
-              <div className="h-full w-full flex items-center justify-center text-2xl">
-                <ImSpinner2 className="animate-spin" />
-              </div>
-            ) : (
-              <>
-                {elements.map((element, i) => (
-                  <div key={element.id}>
-                    <button
-                      onClick={() => toggleSection(i)}
-                      className="flex p-4 items-center justify-between w-full hover:brightness-90 transition-all bg-white"
-                    >
-                      <div className="flex items-center gap-2 text-base">
-                        {element.icon}
-                        <p>{element.name}</p>
-                      </div>
-                      <span>
-                        <IoIosArrowForward />
-                      </span>
-                    </button>
-                    <div className="h-[1px] w-full bg-zinc-300"></div>
-                    <div
-                      className={`${
-                        sectionVisibility[i] ? "flex" : "hidden"
-                      } flex-col items-start p-4 gap-2 bg-zinc-100`}
-                    >
-                      <p>{element.instruction}</p>
-                      <input
-                        className="w-full rounded-lg p-4"
-                        type={element.type}
-                        placeholder={element.placeholder}
-                        value={formData[element.field as keyof typeof formData]}
-                        onChange={(e) =>
-                          handleFieldChange(element.field, e.target.value)
-                        }
-                      />
-                      <Button
-                        onClick={() =>
-                          handleUpdate(
-                            element.field,
-                            formData[element.field as keyof typeof formData]
-                          )
-                        }
-                        className="border-solid border-2 border-blue-200 text-blue-600"
-                      >
-                        <IoIosSave /> Salvar
-                      </Button>
+        <div className="flex flex-col texxt-zinc-700 w-full rounded-xl overflow-hidden">
+          {loading ? (
+            <div className="h-full w-full flex items-center justify-center text-2xl">
+              <ImSpinner2 className="animate-spin" />
+            </div>
+          ) : (
+            <>
+              {elements.map((element, i) => (
+                <div key={element.id}>
+                  <button
+                    onClick={() => toggleSection(i)}
+                    className="flex p-4 items-center justify-between w-full hover:brightness-90 transition-all bg-white"
+                  >
+                    <div className="flex items-center gap-2 text-base">
+                      {element.icon}
+                      <p>{element.name}</p>
                     </div>
+                    <span>
+                      <IoIosArrowForward />
+                    </span>
+                  </button>
+                  <div className="h-[1px] w-full bg-zinc-300"></div>
+                  <div
+                    className={`${
+                      sectionVisibility[i] ? "flex" : "hidden"
+                    } flex-col items-start p-4 gap-2 bg-zinc-100`}
+                  >
+                    <p>{element.instruction}</p>
+                    <input
+                      className="w-full rounded-lg p-4"
+                      type={element.type}
+                      placeholder={element.placeholder}
+                      value={formData[element.field as keyof typeof formData]}
+                      onChange={(e) =>
+                        handleFieldChange(element.field, e.target.value)
+                      }
+                    />
+                    <Button
+                      // onClick={() =>
+                      //   handleUpdate(
+                      //     element.field,
+                      //     formData[element.field as keyof typeof formData]
+                      //   )
+                      // }
+                      className="border-solid border-2 border-blue-200 text-blue-600"
+                    >
+                      <IoIosSave /> Salvar
+                    </Button>
                   </div>
-                ))}
-              </>
-            )}
-          </div>
+                </div>
+              ))}
+            </>
+          )}
         </div>
-      </NotLoggedPage>
+      </div>
+      {/* </NotLoggedPage> */}
       <Toaster />
     </html>
   );

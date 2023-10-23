@@ -11,7 +11,7 @@ export default function ProfileCard() {
         </div>
         <div className="flex items-center justify-between w-full">
           <div className="flex flex-col gap-1">
-            <h1 className="font-semibold text-zinc-700">Andreza</h1>
+            <h1 className="font-semibold text-zinc-700">User</h1>
             <p className="text-zinc-700">Alterar configurações</p>
           </div>
           <div className="text-zinc-700">

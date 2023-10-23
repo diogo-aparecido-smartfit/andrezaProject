@@ -14,8 +14,6 @@ export default function NotLoggedPage({ children }: NotLoggedPageProps) {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // const uid = user.uid;
-        // console.log("uid", uid);
         setUser(user);
       } else {
         console.log("user is logged out");

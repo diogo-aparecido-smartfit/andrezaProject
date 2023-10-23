@@ -1,7 +1,5 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../../services/firebase";
-import { signOut } from "firebase/auth";
 import { HiOutlineLogout } from "react-icons/hi";
 
 interface NavBarProps {
@@ -13,15 +11,15 @@ export default function NavBar({ title, route }: NavBarProps) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-        navigate("/");
-        console.log("Signed out successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // signOut(auth)
+    //   .then(() => {
+    //     // Sign-out successful.
+    navigate("/");
+    //   console.log("Signed out successfully");
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
   };
 
   return (
